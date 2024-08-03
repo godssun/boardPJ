@@ -27,6 +27,16 @@ dependencies {
     // jdbc
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     runtimeOnly 'mysql:mysql-connector-java:8.0.26'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.2'
+
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.2'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
     // Lombok
     compileOnly 'org.projectlombok:lombok'
@@ -71,4 +81,9 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+
+tasks.named('bootJar') {
+    mainClass = 'com.github.boardpj.BoardPjApplication'
 }

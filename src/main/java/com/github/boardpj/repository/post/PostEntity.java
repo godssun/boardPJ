@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 //@AllArgsConstructor
 @Entity
-@Table(name = "post")
+@Table(name = "Post")
 @Getter
 @Setter
 @NoArgsConstructor

@@ -18,12 +18,12 @@ public interface CommentMapper {
 	@Mapping(target = "createdAt", source = "commentEntity.createdAt")
 	CommentDTO toDto(CommentEntity commentEntity);
 
-	@Mapping(target = "commentId", source = "commentDTO.id")
-	@Mapping(target = "content", source = "commentDTO.content")
-	@Mapping(target = "author", source = "commentDTO.author")
-	@Mapping(target = "postId", source = "commentDTO.postId")
-	@Mapping(target = "createdAt", source = "commentDTO.createdAt")
-	CommentEntity toEntity(CommentDTO commentDTO);
+//	@Mapping(target = "commentId", source = "commentDTO.id")
+//	@Mapping(target = "content", source = "commentDTO.content")
+//	@Mapping(target = "author", source = "commentDTO.author")
+//	@Mapping(target = "postId", source = "commentDTO.postId")
+//	@Mapping(target = "createdAt", source = "commentDTO.createdAt")
+//	CommentEntity toEntity(CommentDTO commentDTO);
 
 	@Mapping(target = "commentId", ignore = true)
 	@Mapping(target = "createdAt", ignore = true)

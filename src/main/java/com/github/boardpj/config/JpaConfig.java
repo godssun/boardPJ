@@ -31,7 +31,7 @@ public class JpaConfig {
 		em.setJpaVendorAdapter(vendorAdapter);
 
 		Map<String, Object> properties = new HashMap<>();
-//		properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
+		properties.put("hibernate.dialect", "org.hibernate.dialect.MariaDBDialect");
 		properties.put("hibernate.format_sql", "true");
 		properties.put("hibernate.use_sql_comment", "true");
 
