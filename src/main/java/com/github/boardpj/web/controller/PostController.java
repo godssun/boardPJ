@@ -2,6 +2,8 @@ package com.github.boardpj.web.controller;
 
 import com.github.boardpj.service.PostService;
 import com.github.boardpj.web.dto.post.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@Tag(name = "Post Controller", description = "게시물 관련 API")
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class PostController {
 
@@ -24,6 +27,7 @@ public class PostController {
 	 * @return 게시물 리스트를 포함한 응답
 	 */
 	@GetMapping("/posts")
+	@Operation(summary = "모든 게시물 조회", description = "모든 게시물을 조회합니다.")
 	public ResponseEntity<PostsResponse> getAllPosts() {
 		List<PostDTO> postDTOs = postService.getAllPosts(); // 모든 게시물을 조회
 		logger.info("Returning posts: {}", postDTOs); // 조회된 게시물 리스트를 로그로 출력
@@ -36,6 +40,7 @@ public class PostController {
 	 * @return 작성자의 게시물 리스트를 포함한 응답
 	 */
 	@GetMapping("/posts/search")
+	@Operation(summary = "작성자 이메일로 게시물 검색", description = "작성자의 이메일을 통해 게시물을 검색합니다.")
 	public ResponseEntity<PostsResponse> getPostsByAuthorEmail(@RequestParam String authorEmail) {
 		List<PostDTO> posts = postService.getPostsByAuthorEmail(authorEmail); // 작성자의 이메일로 게시물을 조회
 		return ResponseEntity.ok(new PostsResponse(posts)); // 조회된 게시물 리스트를 응답으로 반환
@@ -47,6 +52,7 @@ public class PostController {
 	 * @return 게시물 생성 결과 메시지를 포함한 응답
 	 */
 	@PostMapping("/posts")
+	@Operation(summary = "새로운 게시물 생성", description = "새로운 게시물을 생성합니다.")
 	public ResponseEntity<PostCreateResponse> createPost(@RequestBody PostCreateRequest postCreateRequest) {
 		PostCreateResponse response = postService.createPost(postCreateRequest); // 새로운 게시물을 생성
 		return ResponseEntity.ok(response); // 생성 결과 메시지를 응답으로 반환
@@ -59,6 +65,7 @@ public class PostController {
 	 * @return 게시물 수정 결과 메시지를 포함한 응답
 	 */
 	@PutMapping("/posts/{postId}")
+	@Operation(summary = "기존 게시물 수정", description = "기존 게시물을 수정합니다.")
 	public ResponseEntity<PostUpdateResponse> updatePost(@PathVariable Integer postId, @RequestBody PostUpdateRequest postUpdateRequest) {
 		PostUpdateResponse response = postService.updatePost(postId, postUpdateRequest); // 기존 게시물을 수정
 		return ResponseEntity.ok(response); // 수정 결과 메시지를 응답으로 반환

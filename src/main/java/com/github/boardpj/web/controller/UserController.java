@@ -3,6 +3,8 @@ package com.github.boardpj.web.controller;
 
 import com.github.boardpj.service.UserService;
 import com.github.boardpj.web.dto.singupandloginout.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
+@Tag(name = "User Controller", description = "회원 관련 API")
 public class UserController {
 
 	@Autowired
@@ -25,6 +28,7 @@ public class UserController {
 	 * @return 회원가입 완료 메시지를 포함한 응답
 	 */
 	@PostMapping("/signup")
+	@Operation(summary = "회원가입", description = "회원가입을 처리합니다.")
 	public ResponseEntity<SignupResponse> signup(@RequestBody SignupRequest request) {
 		userService.signup(request.getEmail(), request.getPassword()); // 회원가입 처리
 		return ResponseEntity.ok(new SignupResponse("회원가입이 완료되었습니다.")); // 완료 메시지를 응답으로 반환
@@ -36,6 +40,7 @@ public class UserController {
 	 * @return 로그인 완료 메시지와 JWT 토큰을 포함한 응답
 	 */
 	@PostMapping("/login")
+	@Operation(summary = "로그인", description = "로그인을 처리하고 JWT 토큰을 반환합니다.")
 	public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
 		String token = userService.login(request.getEmail(), request.getPassword()); // 로그인 처리 및 JWT 토큰 생성
 		HttpHeaders headers = new HttpHeaders();
@@ -49,6 +54,7 @@ public class UserController {
 	 * @return 로그아웃 완료 메시지를 포함한 응답
 	 */
 	@PostMapping("/logout")
+	@Operation(summary = "로그아웃", description = "로그아웃을 처리합니다.")
 	public ResponseEntity<LogoutResponse> logout(@RequestBody LogoutRequest request) {
 		userService.logout(request.getEmail()); // 로그아웃 처리
 		return ResponseEntity.ok(new LogoutResponse("로그아웃이 완료되었습니다.")); // 완료 메시지를 응답으로 반환

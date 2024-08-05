@@ -17,13 +17,19 @@ logging:
       hibernate:
         SQL: DEBUG
 
-spring:
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
 
+spring:
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
-    open-in-view: false
+    open-in-view: false  # open-in-view 설정을 비활성화
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDB103Dialect
+

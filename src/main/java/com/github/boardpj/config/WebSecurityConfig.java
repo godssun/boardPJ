@@ -31,7 +31,7 @@ public class WebSecurityConfig {
 				.csrf(AbstractHttpConfigurer::disable) // CSRF 보호 비활성화
 				.authorizeHttpRequests(authorizeRequests ->
 						authorizeRequests
-								.requestMatchers("/api/signup", "/api/login", "/api/logout", "/api/posts", "/api/posts/search", "/api/comments", "/api/comments/search", "/api/comments/").permitAll() // 회원가입 및 로그인, 로그아웃 엔드포인트 접근 허용
+								.requestMatchers("/api/signup", "/api/login", "/api/logout", "/api/posts", "/api/posts/search", "/api/comments", "/api/comments/search", "/api/comments/", "/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**").permitAll() // 회원가입 및 로그인, 로그아웃, Swagger 엔드포인트 접근 허용
 								.anyRequest().authenticated() // 나머지 요청은 인증 필요
 				)
 				.sessionManagement(sessionManagement ->
