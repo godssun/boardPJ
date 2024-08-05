@@ -5,7 +5,7 @@ dataSource:
   username: ${DATABASE_USERNAME}
   password: ${DATABASE_PASSWORD}
   driverClassName: org.mariadb.jdbc.Driver
-  url: jdbc:mariadb://database-2.cjg6agwiagu5.ap-northeast-2.rds.amazonaws.com:3306/shop
+  url: jdbc:mariadb://mydb-final.cjg6agwiagu5.ap-northeast-2.rds.amazonaws.com:3306/shoppingmall
 
 jwt:
   secret-key-source: ${JWT_SECRET_KEY}

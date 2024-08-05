@@ -18,12 +18,6 @@ public interface PostMapper {
 	@Mapping(target = "createdAt", source = "createdAt")
 	PostDTO toDto(PostEntity postEntity);
 
-	@Mapping(target = "postId", source = "id")
-	@Mapping(target = "title", source = "title")
-	@Mapping(target = "content", source = "content")
-	@Mapping(target = "author", source = "author")
-	@Mapping(target = "createdAt", source = "createdAt")
-	PostEntity toEntity(PostDTO postDTO);
 
 	@Mapping(target = "postId", ignore = true)
 	@Mapping(target = "createdAt", ignore = true)
@@ -31,6 +25,7 @@ public interface PostMapper {
 	@Mapping(source = "title", target = "title")
 	@Mapping(source = "content", target = "content")
 	@Mapping(source = "author", target = "author")
+	@Mapping(target = "updatedAt", expression = "java(java.time.LocalDateTime.now())")
 	PostEntity toEntity(PostCreateRequest postCreateRequest);
 
 }
